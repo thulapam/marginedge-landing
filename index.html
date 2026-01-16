@@ -9,31 +9,23 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Plus Jakarta Sans', sans-serif; background: #050507; color: #ffffff; overflow-x: hidden; }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #050507; color: #ffffff; overflow-x: hidden; }
         .mesh-bg {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;
-            background-image: radial-gradient(at 0% 0%, hsla(225,39%,10%,1) 0, transparent 50%), radial-gradient(at 100% 100%, hsla(210,100%,8%,1) 0, transparent 50%);
+            background: 
+                radial-gradient(circle at 0% 0%, rgba(30, 41, 59, 0.7) 0%, transparent 40%),
+                radial-gradient(circle at 100% 100%, rgba(15, 23, 42, 0.8) 0%, transparent 50%),
+                radial-gradient(circle at 50% 50%, #050507 0%, #0f172a 100%);
         }
         .glass-nav { background: rgba(5, 5, 7, 0.8); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
-        .feature-card { background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.08); }
-        
-        /* UPDATED IMPACT STYLES: Removed opacity 0 / hidden states */
-        .impact-card-v2 { 
-            background: rgba(255, 255, 255, 0.02); 
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-            opacity: 1; /* Ensure visible on load */
-            transform: none; /* Ensure no initial offset */
-        }
-        .impact-card-v2:hover { 
-            background: rgba(59, 130, 246, 0.08); 
-            border-color: rgba(59, 130, 246, 0.4);
-            transform: scale(1.01) translateX(10px);
-        }
+        .feature-card { background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); backdrop-filter: blur(10px); }
+        .impact-card-v2 { background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.08); transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
+        .impact-card-v2:hover { background: rgba(59, 130, 246, 0.08); border-color: rgba(59, 130, 246, 0.4); transform: scale(1.01) translateX(10px); }
         .glow-stat { text-shadow: 0 0 20px rgba(59, 130, 246, 0.5); }
-        
         .glow-blue { box-shadow: 0 0 30px rgba(59, 130, 246, 0.2); }
         .text-gradient { background: linear-gradient(to right, #ffffff, #94a3b8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .input-field { background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); color: white; transition: all 0.3s ease; }
+        .input-field:focus { background: rgba(255, 255, 255, 0.1); border-color: #3b82f6; outline: none; }
     </style>
 </head>
 <body>
@@ -49,9 +41,8 @@
                 <a href="#problem" class="hover:text-white transition">The Problem</a>
                 <a href="#features" class="hover:text-white transition">Solution</a>
                 <a href="#impact" class="hover:text-white transition">Impact</a>
-                <a href="#pricing" class="hover:text-white transition">Pricing</a>
             </div>
-            <button class="bg-blue-600 px-6 py-2 rounded-full font-bold text-xs uppercase hover:bg-blue-500 transition-all">Request Early Access</button>
+            <a href="#cta-footer" class="bg-blue-600 px-6 py-2 rounded-full font-bold text-xs uppercase hover:bg-blue-500 transition-all">Request Early Access</a>
         </div>
     </nav>
 
@@ -62,10 +53,10 @@
                 SMART RETAIL. <br><span class="text-blue-500 italic">GIANT MARGINS.</span>
             </h1>
             <p id="hero-sub" class="text-slate-400 text-lg md:text-xl max-w-2xl mx-auto mb-10 font-light leading-relaxed">
-                The only B2B SaaS that combines AI procurement, real-time inventory, and collective buying power to help SMBs crush the competition.
+                The only B2B SaaS that combines AI procurement, real-time inventory, and collective buying power.
             </p>
             <div id="hero-btns" class="flex flex-wrap justify-center gap-6">
-                <button class="px-10 py-4 bg-white text-black rounded-full font-extrabold hover:scale-105 transition-all">Join the Waitlist</button>
+                <a href="#cta-footer" class="px-10 py-4 bg-white text-black rounded-full font-extrabold hover:scale-105 transition-all">Join the Waitlist</a>
                 <button class="px-10 py-4 border border-white/10 rounded-full font-extrabold hover:bg-white/5 transition-all">See Traction</button>
             </div>
         </div>
@@ -78,166 +69,34 @@
                 <div class="space-y-6">
                     <div class="p-6 bg-red-500/5 border border-red-500/20 rounded-2xl">
                         <h4 class="text-red-400 font-bold mb-2">❌ Manual Chaos</h4>
-                        <p class="text-slate-400 text-sm">Hours wasted on paper billing, manual stock counting, and phone-call POs.</p>
-                    </div>
-                    <div class="p-6 bg-red-500/5 border border-red-500/20 rounded-2xl">
-                        <h4 class="text-red-400 font-bold mb-2">❌ Procurement Disadvantage</h4>
-                        <p class="text-slate-400 text-sm">Forced to rely on expensive middle-men while giants buy direct from manufacturers.</p>
-                    </div>
-                    <div class="p-6 bg-red-500/5 border border-red-500/20 rounded-2xl">
-                        <h4 class="text-red-400 font-bold mb-2">❌ Shrinking Margins</h4>
-                        <p class="text-slate-400 text-sm">Rising competition from e-commerce giants is squeezing local store profits to zero.</p>
+                        <p class="text-slate-400 text-sm">Hours wasted on paper billing and manual stock counting.</p>
                     </div>
                 </div>
             </div>
             <div class="relative">
                 <div class="absolute -inset-4 bg-blue-500/20 blur-3xl rounded-full"></div>
                 <div class="relative bg-slate-900 border border-white/10 p-8 rounded-3xl glow-blue">
-                    <h4 class="text-blue-500 font-black mb-4 uppercase tracking-widest text-xs">The MarginEdge Shift</h4>
-                    <div class="space-y-4">
-                        <div class="h-2 w-full bg-slate-800 rounded-full overflow-hidden">
-                            <div class="h-full bg-blue-500 w-[85%]"></div>
-                        </div>
-                        <p class="text-[10px] text-slate-500">Manual Workload Reduced by 85%</p>
-                        <div class="h-2 w-full bg-slate-800 rounded-full overflow-hidden">
-                            <div class="h-full bg-emerald-500 w-[30%]"></div>
-                        </div>
-                        <p class="text-[10px] text-slate-500">Average Profit Margin Increase: 30%</p>
+                    <h4 class="text-blue-500 font-black mb-4 uppercase tracking-widest text-xs">85% Workload Reduction</h4>
+                    <div class="h-2 w-full bg-slate-800 rounded-full overflow-hidden">
+                        <div class="h-full bg-blue-500 w-[85%]"></div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="features" class="py-32 px-6 bg-white/5">
-        <div class="container mx-auto">
-            <div class="text-center mb-20">
-                <h2 class="text-4xl font-black italic mb-4">THE ECOSYSTEM</h2>
-                <p class="text-slate-500 uppercase text-xs tracking-widest">Unified Architecture for Modern Commerce</p>
-            </div>
-            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-                <div class="feature-card p-8 rounded-3xl">
-                    <h4 class="text-lg font-bold mb-4 text-blue-400">AI Procurement</h4>
-                    <p class="text-slate-400 text-sm font-light leading-relaxed">Scrapes online/offline prices across 15+ channels to find the best deals instantly.</p>
-                </div>
-                <div class="feature-card p-8 rounded-3xl">
-                    <h4 class="text-lg font-bold mb-4 text-blue-400">Smart Inventory</h4>
-                    <p class="text-slate-400 text-sm font-light leading-relaxed">Real-time tracking with OCR-based invoice processing (92% accuracy).</p>
-                </div>
-                <div class="feature-card p-8 rounded-3xl">
-                    <h4 class="text-lg font-bold mb-4 text-blue-400">Collective Buying</h4>
-                    <p class="text-slate-400 text-sm font-light leading-relaxed">Aggregates demand to unlock manufacturer-direct pricing for small stores.</p>
-                </div>
-                <div class="feature-card p-8 rounded-3xl">
-                    <h4 class="text-lg font-bold mb-4 text-blue-400">Margin Optimizer</h4>
-                    <p class="text-slate-400 text-sm font-light leading-relaxed">Algorithmic pricing engine to help you match big-chain prices while protecting profit.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="impact" class="py-32 px-6 container mx-auto">
-        <div class="max-w-5xl mx-auto">
-            <h2 class="text-4xl font-black italic mb-16 text-center">BUSINESS IMPACT</h2>
-            
-            <div class="grid gap-6">
-                <div class="impact-card-v2 p-8 md:p-10 rounded-[2.5rem] flex flex-col md:flex-row justify-between items-center gap-8">
-                    <div class="flex-1">
-                        <div class="flex items-center gap-3 mb-4">
-                            <span class="w-2 h-2 rounded-full bg-blue-500 animate-pulse"></span>
-                            <span class="text-xs font-bold text-blue-400 uppercase tracking-widest">Procurement Efficiency</span>
-                        </div>
-                        <h4 class="text-2xl font-bold mb-3">Cost Reduction</h4>
-                        <p class="text-slate-400 font-light leading-relaxed max-w-md text-sm">
-                            Eliminate middle-man markups. Our collective buying model identifies manufacturer-direct purchase opportunities when aggregated demand reaches economic order quantities.
-                        </p>
-                    </div>
-                    <div class="text-right">
-                        <div class="text-5xl md:text-7xl font-black text-blue-500 glow-stat italic">15-30%</div>
-                        <p class="text-slate-500 text-[10px] font-bold mt-2 tracking-widest uppercase text-center">Lower COGS</p>
-                    </div>
-                </div>
-
-                <div class="impact-card-v2 p-8 md:p-10 rounded-[2.5rem] flex flex-col md:flex-row justify-between items-center gap-8">
-                    <div class="flex-1">
-                        <div class="flex items-center gap-3 mb-4">
-                            <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-                            <span class="text-xs font-bold text-emerald-400 uppercase tracking-widest">Manual Labor Reclaimed</span>
-                        </div>
-                        <h4 class="text-2xl font-bold mb-3">Operational Efficiency</h4>
-                        <p class="text-slate-400 font-light leading-relaxed max-w-md text-sm">
-                            Proven in live supermarket deployments. Automated stock reconciliation and algorithmic PO generation eliminates manual data entry and human error.
-                        </p>
-                    </div>
-                    <div class="text-right">
-                        <div class="text-5xl md:text-7xl font-black text-emerald-500 glow-stat italic">80%</div>
-                        <p class="text-slate-500 text-[10px] font-bold mt-2 tracking-widest uppercase text-center">Workflow Speed</p>
-                    </div>
-                </div>
-
-                <div class="impact-card-v2 p-8 md:p-10 rounded-[2.5rem] flex flex-col md:flex-row justify-between items-center gap-8">
-                    <div class="flex-1">
-                        <div class="flex items-center gap-3 mb-4">
-                            <span class="w-2 h-2 rounded-full bg-blue-500 animate-pulse"></span>
-                            <span class="text-xs font-bold text-blue-400 uppercase tracking-widest">System Accuracy</span>
-                        </div>
-                        <h4 class="text-2xl font-bold mb-3">OCR Data Precision</h4>
-                        <p class="text-slate-400 font-light leading-relaxed max-w-md text-sm">
-                            Proprietary OCR engine achieving high-fidelity digitization of distributor PDFs, ensuring regulatory-compliant tax categorization and precise inventory sync.
-                        </p>
-                    </div>
-                    <div class="text-right">
-                        <div class="text-5xl md:text-7xl font-black text-blue-500 glow-stat italic">92%</div>
-                        <p class="text-slate-500 text-[10px] font-bold mt-2 tracking-widest uppercase text-center">Data Accuracy</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="pricing" class="py-32 px-6">
-        <div class="container mx-auto max-w-4xl">
-            <div class="grid md:grid-cols-2 gap-8">
-                <div class="p-12 rounded-[2.5rem] bg-white/5 border border-white/10">
-                    <h4 class="text-xl font-bold mb-2">Standard</h4>
-                    <p class="text-slate-500 text-sm mb-6">For individual stores</p>
-                    <div class="text-5xl font-black mb-10">$50<span class="text-lg text-slate-500">/mo</span></div>
-                    <ul class="space-y-4 text-slate-400 text-sm mb-10">
-                        <li>✓ AI Sourcing Engine</li>
-                        <li>✓ OCR Invoice Processing</li>
-                        <li>✓ Real-time Inventory</li>
-                    </ul>
-                    <button class="w-full py-4 bg-white text-black rounded-full font-bold uppercase tracking-widest text-xs hover:bg-blue-600 hover:text-white transition-all">Start Trial</button>
-                </div>
-                <div class="p-12 rounded-[2.5rem] bg-blue-600/10 border-2 border-blue-500">
-                    <h4 class="text-xl font-bold mb-2">Enterprise</h4>
-                    <p class="text-slate-500 text-sm mb-6">For chains & networks</p>
-                    <div class="text-5xl font-black mb-10 italic">CUSTOM</div>
-                    <ul class="space-y-4 text-slate-400 text-sm mb-10">
-                        <li>✓ Everything in Standard</li>
-                        <li>✓ Collective Buying Power</li>
-                        <li>✓ API-First Integrations</li>
-                        <li>✓ Dedicated Account Manager</li>
-                    </ul>
-                    <button class="w-full py-4 bg-blue-600 text-white rounded-full font-bold uppercase tracking-widest text-xs hover:bg-blue-500 transition-all">Contact Sales</button>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <footer class="py-24 text-center">
+    <footer id="cta-footer" class="py-24">
         <div class="container mx-auto px-6 text-center">
             <h2 class="text-4xl md:text-6xl font-black mb-12 italic">THE FUTURE IS <span class="text-blue-500">COLLECTIVE.</span></h2>
             
-            <div class="max-w-2xl mx-auto bg-black/40 p-10 rounded-[3rem] border border-white/10 glow-blue">
-                <h4 class="text-xl font-bold mb-6">Secure your spot on the waitlist</h4>
-                <form class="space-y-4">
-                    <input type="text" placeholder="Full Name" required class="w-full input-field px-6 py-4 rounded-2xl">
-                    <input type="email" placeholder="Work Email" required class="w-full input-field px-6 py-4 rounded-2xl">
-                    <button type="submit" class="w-full py-4 bg-blue-600 text-white rounded-2xl font-black uppercase tracking-widest hover:bg-blue-500 transition-all">Request access</button>
+            <div id="form-container" class="max-w-2xl mx-auto bg-black/40 p-10 rounded-[3rem] border border-white/10 glow-blue transition-all duration-500">
+                <h4 class="text-xl font-bold mb-6" id="form-heading">Secure your spot on the waitlist</h4>
+                <form id="access-form" class="space-y-4">
+                    <input type="text" id="name-field" placeholder="Full Name" required class="w-full input-field px-6 py-4 rounded-2xl">
+                    <input type="email" id="email-field" placeholder="Work Email" required class="w-full input-field px-6 py-4 rounded-2xl">
+                    <button type="submit" id="submit-btn" class="w-full py-4 bg-blue-600 text-white rounded-2xl font-black uppercase tracking-widest hover:bg-blue-500 transition-all">Join Early Access</button>
                 </form>
             </div>
-
             <p class="mt-20 text-slate-700 text-[10px] font-bold tracking-[0.5em] uppercase">MarginEdge 2026 • SaaS • AI • B2B</p>
         </div>
     </footer>
@@ -245,18 +104,57 @@
     <script>
         gsap.registerPlugin(ScrollTrigger);
 
+        // Animations
         const tl = gsap.timeline();
         tl.from("#hero-tag", { opacity: 0, y: 20, duration: 1 })
           .from("#hero-title", { opacity: 0, y: 50, duration: 1, ease: "power4.out" }, "-=0.7")
           .from("#hero-sub", { opacity: 0, y: 30, duration: 1 }, "-=0.8")
           .from("#hero-btns", { opacity: 0, y: 20, duration: 1 }, "-=0.9");
 
-        gsap.from(".feature-card", {
-            scrollTrigger: { trigger: "#features", start: "top 80%" },
-            y: 50, opacity: 0, stagger: 0.15, duration: 0.8, ease: "power2.out"
-        });
+        // Google Form Logic
+        const accessForm = document.getElementById('access-form');
+        const formContainer = document.getElementById('form-container');
+        const formHeading = document.getElementById('form-heading');
 
-        /* IMPACT ANIMATION REMOVED */
+        accessForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const name = document.getElementById('name-field').value;
+            const email = document.getElementById('email-field').value;
+            const submitBtn = document.getElementById('submit-btn');
+
+            // Replace with your actual IDs
+            const googleFormURL = "https://docs.google.com/forms/d/e/1UMEERqKEWVsCrC3rm0wyi463b4T6FGXIrR719V6nIZM/formResponse";
+            const nameEntryID = "entry.334168513"; // Replace this
+            const emailEntryID = "entry.355621196"; // Replace this
+
+            submitBtn.innerHTML = "Sending...";
+            submitBtn.disabled = true;
+
+            const formData = new FormData();
+            formData.append(nameEntryID, name);
+            formData.append(emailEntryID, email);
+
+            fetch(googleFormURL, {
+                method: 'POST',
+                mode: 'no-cors',
+                body: formData
+            }).then(() => {
+                // Success State
+                formContainer.style.borderColor = "#10b981"; // Emerald green
+                formHeading.innerHTML = "You're on the list! 🎉";
+                accessForm.innerHTML = `
+                    <div class="py-8 text-center">
+                        <p class="text-slate-400 mb-6">Thank you, <strong>${name}</strong>. We've sent a confirmation to <strong>${email}</strong>.</p>
+                        <button onclick="window.location.reload()" class="text-blue-500 text-xs font-bold uppercase tracking-widest">Back to top</button>
+                    </div>
+                `;
+            }).catch(error => {
+                console.error('Error!', error.message);
+                submitBtn.innerHTML = "Error. Try again?";
+                submitBtn.disabled = false;
+            });
+        });
     </script>
 </body>
 </html>
